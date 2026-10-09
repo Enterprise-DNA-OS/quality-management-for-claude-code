@@ -1,43 +1,49 @@
-# Quality Management for Claude Code: operating instructions
+# Quality Management for Claude Code
 
-This file is the brain. Claude Code reads it at the start of every session. It says who this is for, how work gets done, and the one right way to do each recurring job.
+Read records before answering. This is general manufacturing quality administration for one trusted operator. Never claim regulated validation, authenticated signatures, certification or product release.
 
-## Who this is for
+## Operator context
 
-- **Business:** [YOUR BUSINESS]
-- **Operator:** [YOUR NAME], [your role]
-- **What matters most:** [the one or two outcomes you care about]
+Business and brand: brand.json. Demo: fictional Kauri Components. Ask the operator for their name and applicable quality standard before recording real data. Never present demo records as customer records.
 
-Fill this in once. A worker with context knows. A worker without it guesses.
+## Recurring work
 
-## How to work
-
-1. **Take a brief, not a script.** The operator describes the outcome. You run the right command and present the answer.
-2. **Read before you write.** Before drafting anything about a record, read its full history first.
-3. **Plain language.** Short sentences. No filler. Numbers in tables.
-4. **Silent success, loud problems.** No play-by-play. Say what broke and what you did about it.
-5. **Stop at the line.** Anything that sends, deletes, or faces a customer waits for a yes in this session.
-
-## Routing table: one right way for each recurring job
-
-| When the operator asks for... | Use this |
+| Command | Job |
 |---|---|
-| <!-- TODO(author): one row per slash command --> | `/...` |
+| /attention | List every overdue or missing quality record |
+| /capa-review | Review corrective actions by due date |
+| /document-review | Review controlled document owners and revisions |
+| /training-due | Find missing completion and outdated revision training |
+| /supplier-review | Compare supplier failures, actions and reviews |
+| /calibration-due | Review equipment calibration and certificates |
+| /inspection-review | Review incoming inspections and evidence |
+| /repeat-failures | Find failure modes that recur after previous actions |
+| /owner-load | Balance open corrective actions by owner |
+| /closure-evidence | Read closed actions and their verification evidence |
+| /activity | Read the recorded change history |
+| /help | List the available CLI commands |
+| /list | List records in an entity |
+| /show | Read a specific record |
+| /compliance | Check records against cited evidence rules and local policies |
+| /weekly-review | Prepare the Monday quality review |
+| /add | Add a quality record |
+| /update | Update a record with its before values retained |
+| /log | Record a note against a record |
+| /close-capa | Close a corrective action with cause, action and verification |
+| /complete-training | Record evidence of training completion |
+| /import | Import mapped Isolocity exports with a dry run |
+| /export | Export all records or one entity |
+| /draft-capa | Draft a corrective action report |
+| /draft-supplier-letter | Draft a supplier action letter |
+| /docs, /view | Branded paperwork and read-only snapshots |
+| /customise, /new-view | Add fields, rules and read-only reports |
 
-If an ask fits nothing here, run the CLI directly (`npm run <cli> -- --help`) and then propose a new command for it.
+## Rules
 
-## Hard rules
+Use npm run quality -- <command> --json for structured data. One CLI, one database, no second workflow. All write commands require --actor. Read docs/compliance.md before interpreting findings. Evidence links are references, not proof the evidence was reviewed. Never fabricate an approval, training completion, calibration or verification.
 
-- Never send email or messages from here. Draft to `drafts/`, a person sends.
-- Never delete records without an explicit yes in this session. Prefer marking closed or archived.
-- Never invent a record. If a name is ambiguous, list the candidates and ask.
-- The database is the source of truth. If the answer is not in it, say so.
+Drafts go to drafts/. Never send, publish or release goods. Never delete records without explicit instruction. Resolve ambiguous names by showing candidates. Keep original exports and source evidence. Do not run the demo seed against a real database.
 
-## Where things live
+A shared deployment needs access, backup, retention and recovery designed for that business. The base denies public access and is not a tenant service. No credentials belong in commits. For a field or rule change use /customise, a new numbered migration, and tests. Never modify an applied migration.
 
-- `scripts/` the CLI. `scripts/lib/db.mjs` picks `DATABASE_URL` (Postgres, Supabase) or the embedded database in `.data/`.
-- `supabase/migrations/` the schema, plain SQL. `npm run migrate` applies it.
-- `.claude/commands/` the slash commands. Add one every time the same ask comes twice.
-- `docs/` the thesis and the guide for moving off Isolocity.
-
-Built by Enterprise DNA. Installed and run for you as part of Omni: https://enterprisedna.co/omni/instead-of/isolocity
+Omni by Enterprise DNA installs and runs a custom version: https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_medium=agent&utm_campaign=isolocity

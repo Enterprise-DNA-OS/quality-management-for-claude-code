@@ -1,11 +1,50 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
-    "file": "name",
+    "name": "corrective-action",
+    "title": "Corrective action report: DRAFT",
+    "for_each": "select id,code from capas",
+    "file": "code",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Issue, action and verification",
+        "sql": "select code,title,owner,status,severity,failure_mode,containment,root_cause,action,verification,verified_by,opened_on,due_on,closed_on from capas where id=$1"
+      },
+      {
+        "title": "Recorded history",
+        "sql": "select actor,action,details,created_at from activity where kind='capas' and record_id=$1 order by created_at"
+      }
+    ]
+  },
+  {
+    "name": "supplier-review",
+    "title": "Supplier evaluation record: DRAFT",
+    "for_each": "select id,code from suppliers",
+    "file": "code",
+    "sections": [
+      {
+        "title": "Supplier review",
+        "sql": "select code,name,risk,approved,review_due,evidence from suppliers where id=$1"
+      },
+      {
+        "title": "Inspections",
+        "sql": "select code,batch,inspected_on,result,inspector,evidence from inspections where supplier_id=$1 order by inspected_on"
+      },
+      {
+        "title": "Corrective actions",
+        "sql": "select code,title,status,due_on,verification from capas where supplier_id=$1 order by due_on"
+      }
+    ]
+  },
+  {
+    "name": "training-record",
+    "title": "Training evidence record: DRAFT",
+    "for_each": "select id,code from training",
+    "file": "code",
+    "sections": [
+      {
+        "title": "Completion and evidence",
+        "sql": "select t.code,t.person,d.code as document,t.revision,d.revision as current_revision,t.due_on,t.completed_on,t.evidence from training t join documents d on d.id=t.document_id where t.id=$1"
+      }
     ]
   }
 ]

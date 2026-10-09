@@ -1,0 +1,23 @@
+{
+  "captured": "2026-10-09T22:16:17.828Z",
+  "screens": [
+    {
+      "title": "The morning quality review",
+      "ask": "What needs attention across our quality records today?",
+      "command": "npm run quality -- attention",
+      "output": "  rule                    code    owner            due_on      finding                                                        \n  ----------------------  ------  ---------------  ----------  ---------------------------------------------------------------\n  SUPPLIER-REVIEW         SUP-AL  quality manager  2026-09-19  Supplier approval, evidence or review needs attention          \n  CALIBRATION-DUE         EQ-01   Noah Reed        2026-09-24  In-service equipment calibration overdue or certificate missing\n  TRAINING-GAP            TR-01   Noah Reed        2026-09-29  revision changed                                               \n  DOC-REVIEW              SOP-01  Mara Chen        2026-10-04  Effective document past its review date                        \n  CAPA-CONTAINMENT        CA-01   Mara Chen        2026-10-05  Major issue has no containment recorded                        \n  CAPA-DUE                CA-01   Mara Chen        2026-10-05  Corrective action past its agreed date                         \n  INSPECTION-CALIBRATION  IN-01   Noah Reed        2026-10-06  Inspection dated after recorded calibration due date           \n  FAILED-NO-CAPA          IN-02   Aroha King       2026-10-07  Failed inspection has no linked corrective action              \n  INSPECTION-EVIDENCE     IN-02   Aroha King       2026-10-07  Inspection has no evidence reference                           \n  TRAINING-GAP            TR-02   Aroha King       2026-10-07  completion missing                                             \n  SUPPLIER-REVIEW         SUP-PA  quality manager  2026-10-19  Supplier approval, evidence or review needs attention"
+    },
+    {
+      "title": "A supplier meeting with the evidence in front of you",
+      "ask": "Which suppliers have inspection failures and overdue corrective actions?",
+      "command": "npm run quality -- supplier-review",
+      "output": "  code    name               risk    approved  review_due  inspections  failed  open_capas  overdue_capas\n  ------  -----------------  ------  --------  ----------  -----------  ------  ----------  -------------\n  SUP-AL  Alpine Fasteners   high    true      2026-09-19  2            2       1           1            \n  SUP-HA  Harbour Coatings   normal  true      2026-12-08  1            0       1           0            \n  SUP-PA  Pacific Packaging  normal  false     2026-10-19  0            0       0           0"
+    },
+    {
+      "title": "The training that needs updating",
+      "ask": "Who needs training on the current procedure revision?",
+      "command": "npm run quality -- training-due",
+      "output": "  code   person      document  trained_revision  current_revision  due_on      gap               \n  -----  ----------  --------  ----------------  ----------------  ----------  ------------------\n  TR-01  Noah Reed   SOP-01    2                 3                 2026-09-29  revision changed  \n  TR-02  Aroha King  SOP-01    3                 3                 2026-10-07  completion missing"
+    }
+  ]
+}

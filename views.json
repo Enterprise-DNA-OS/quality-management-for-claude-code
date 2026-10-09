@@ -1,13 +1,39 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "Quality Management for Claude Code: what needs attention, rendered by npm run view",
+    "title": "Quality review this week",
     "sections": [
       {
         "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "sql": "select rule,code,owner,due_on,finding from quality_findings order by due_on,code"
+      },
+      {
+        "title": "Repeated failures",
+        "sql": "select * from quality_repeat_failures"
+      }
+    ]
+  },
+  {
+    "name": "suppliers",
+    "title": "Supplier quality review",
+    "sections": [
+      {
+        "title": "Performance and review dates",
+        "sql": "select code,name,risk,review_due,inspections,failed,open_capas,overdue_capas from quality_supplier_scorecard order by overdue_capas desc,code"
+      }
+    ]
+  },
+  {
+    "name": "training",
+    "title": "Training and document control",
+    "sections": [
+      {
+        "title": "Missing or outdated training",
+        "sql": "select code,person,document,trained_revision,current_revision,due_on,gap from quality_training_gaps"
+      },
+      {
+        "title": "Document reviews",
+        "sql": "select code,title,revision,owner,review_due from documents where status='effective' order by review_due"
       }
     ]
   }

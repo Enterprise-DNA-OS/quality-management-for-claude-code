@@ -1,11 +1,8 @@
 ---
-description: Check the records against the rules this industry lives under (the ones listed in docs/compliance.md) and report what is missing, late, or about to breach, with the rule cited.
+description: Check records against cited evidence rules and local policies
 ---
 
-1. Read `docs/compliance.md`. Each rule has a name, the source it comes from, what a breach looks like in the data, and the SQL or command that finds it.
-2. Run each check. Use the CLI's `--json` output or a direct query through `scripts/lib/db.mjs`.
-3. Report as a table: rule, count, the worst example (name and days), the source. Order by severity: breached first, then due within 7 days, then clean.
-4. For anything breached, draft the fix the operator can approve: the record to update, the notice to send (draft to `drafts/`, never send), or the task to add.
-5. If a rule in `docs/compliance.md` is out of date, say so and stop. Do not guess at law. The operator confirms the rule, then you update the doc and the check together.
-
-Nothing here is legal advice. The doc records the rules the operator has told the system to enforce, with sources, and this command checks the data against them.
+1. Read CLAUDE.md. Read docs/compliance.md and keep house policies distinct from ISO evidence guidance.
+2. Run `npm run quality -- compliance --json`. Replace placeholders with the operator's supplied values. Run help or read docs/replace-isolocity.md for entity fields.
+3. Present the result with record codes, owners and dates. If a match is ambiguous, show the candidates and obtain the intended record. Never invent evidence or completion.
+4. Any document is a draft saved locally. Never send, publish, release a batch or certify compliance.
