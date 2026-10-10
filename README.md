@@ -6,7 +6,7 @@ Corrective actions, controlled documents, training evidence, supplier reviews an
 |---|---|---|
 | Free, MIT. Clone it and run the demo. | Your fields, rules, Isolocity exports and paperwork. | Installed and operated through Omni by Enterprise DNA. A setup fee, then a retainer. |
 
-[Get your version built](https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_medium=readme&utm_campaign=isolocity) · [Instead of Isolocity](https://enterprisedna.co/omni/instead-of/isolocity)
+[Get your version built](https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_medium=readme&utm_campaign=isolocity) · [Instead of Isolocity](https://enterprisedna.co/omni/instead-of/isolocity?utm_source=github&utm_medium=readme&utm_campaign=isolocity)
 
 ## What this replaces
 
